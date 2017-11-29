@@ -1,0 +1,60 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: zenvia-talker
+  namespace: messaging
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  minReadySeconds: 3
+  template:
+    metadata:
+      labels:
+        app: zenvia-talker
+    spec:
+      containers:
+      - name: zenvia-talker
+        image: docker.io/zenviavas/zenvia-talker:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            cpu: "0.5"
+            memory: 64Mi
+          limits:
+            cpu: "2"
+            memory: 256Mi  
+        lifecycle:
+          preStop:
+            exec:
+              command: ["sleep", "1"]
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /status
+            port: 3000
+          initialDelaySeconds: 20
+          periodSeconds: 3
+          timeoutSeconds: 30
+          successThreshold: 1
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /status
+            port: 3000
+          initialDelaySeconds: 20
+          periodSeconds: 3
+          timeoutSeconds: 30
+          successThreshold: 1
+          failureThreshold: 3
+        envFrom:
+        - configMapRef:
+            name: zenvia-talker
+      imagePullSecrets:
+        - name: regsecret

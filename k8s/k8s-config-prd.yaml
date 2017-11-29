@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: zenvia-talker
+  namespace: messaging
+data:
+  LOG_INTERVAL: '1000'

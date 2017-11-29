@@ -1,0 +1,17 @@
+{
+  "name": "zenvia-talker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Lucas Inocente <lucas.inocente@zenvia.com>",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "figlet": "^1.2.0",
+    "os": "^0.1.1"
+  }
+}
