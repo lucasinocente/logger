@@ -1,4 +1,4 @@
-# Zenvia Talker
+# Logger
 
 ## To install
 `npm install`
