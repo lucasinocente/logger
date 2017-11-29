@@ -25,14 +25,13 @@ function talk() {
 
 }
 
-figlet('Zenvia Talker', function(err, data) {
+figlet('Logger', function(err, data) {
     console.log(data);
 });
 
-console.log(`I will talk each ${process.env.LOG_INTERVAL}ms`);
+console.log(`I will log each ${process.env.LOG_INTERVAL}ms`);
 
-
-// Serve to 
+// Serve to K8s readinessProbe and livenessProbe
 app.get('/status', function(req, res){
     res.sendStatus(200);
 });
