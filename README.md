@@ -1,5 +1,10 @@
 # Logger
 
+A simple app to show some traceable logs.
+
+![](https://i.imgur.com/w0RAfoN.png)
+
+
 ## To install
 `npm install`
 
